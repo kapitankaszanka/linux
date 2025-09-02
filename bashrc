@@ -22,7 +22,7 @@ if [ "$color_prompt" = yes ]; then
     # User
     # PS1='[\[\e[01;35m\]\t\[\e[00m\]][ ${debian_chroot:+($debian_chroot)}\[\e[01;32m\]\u#\[\e[00m\]\[\e[01;37m\]\h\[\e[00m\] \[\e[01;34m\]\w\[\e[00m\] ] \e[33m$(parse_git_branch)\e[00m \n$ '
     # Root
-    PS1='[ ${debian_chroot:+($debian_chroot)}\[\e[01;31m\]\u#\[\e[00m\]\[\e[01;90m\]\h\[\e[00m\] \[\e[01;34m\]\w\[\e[00m\] ] \n$ '
+    PS1='[\[\e[01;35m\]\t\[\e[00m\]][ ${debian_chroot:+($debian_chroot)}\[\e[01;31m\]\u#\[\e[00m\]\[\e[01;90m\]\h\[\e[00m\] \[\e[01;34m\]\w\[\e[00m\] ] \n$ '
 else
     PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\n$ '
 fi
