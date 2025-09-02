@@ -8,6 +8,9 @@
 :set autoindent
 :set smartcase
 
+syntax on
+colorscheme desert
+
 nnoremap <Tab> >>
 nnoremap <S-Tab> <<
 xnoremap <Tab> >
