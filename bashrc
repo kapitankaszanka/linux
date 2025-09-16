@@ -22,6 +22,7 @@ export EDITOR=vim      # change if you prefer nano, micro, etc.
 if [ -x /usr/bin/dircolors ]; then
   test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
 fi
+alias ls='ls --color=auto'
 alias lla='ls -lah'
 alias grep='grep --color=auto'
 alias ip='ip --color=auto'
@@ -46,30 +47,21 @@ __git_branch() {
   printf ' (%s)' "$b"
 }
 
-__prompt_status() {
-  local exit=$?
-  if [ $exit -eq 0 ]; then
-    printf "\[\e[1;32m\]✓\[\e[0m\]"
-  else
-    printf "\[\e[1;31m\]✗\[\e[0m\]"
-  fi
-}
-
 case "$TERM" in xterm-color|*-256color) color_prompt=yes ;; esac
 
 if [ "$color_prompt" = yes ] && tput setaf 1 >/dev/null 2>&1; then
     if [ "$EUID" -eq 0 ]; then
         # Root → username in red, # prompt
-        PS1='[\[\e[01;35m\]\t\[\e[00m\]][ ${debian_chroot:+($debian_chroot)}\[\e[01;31m\]\u#\[\e[00m\]\[\e[01;37m\]\h\[\e[00m\] \[\e[01;34m\]\w\[\e[00m\] ] \[\e[33m\]$(parse_git_branch)\[\e[00m\]\n# '
+        PS1='[\[\e[01;35m\]\t\[\e[00m\]][ ${debian_chroot:+($debian_chroot)}\[\e[01;31m\]\u#\[\e[00m\]\[\e[01;37m\]\h\[\e[00m\] \[\e[01;34m\]\w\[\e[00m\] ] \[\e[33m\]$(__git_branch)\[\e[00m\]\n# '
     else
         # Normal user → username in green, $ prompt
-        PS1='[\[\e[01;35m\]\t\[\e[00m\]][ ${debian_chroot:+($debian_chroot)}\[\e[01;32m\]\u\[\e[00m\]\[\e[01;37m\]\h\[\e[00m\] \[\e[01;34m\]\w\[\e[00m\] ] \[\e[33m\]$(parse_git_branch)\[\e[00m\]\n$ '
+        PS1='[\[\e[01;35m\]\t\[\e[00m\]][ ${debian_chroot:+($debian_chroot)}\[\e[01;32m\]\u\[\e[00m\]\[\e[01;37m\]\h\[\e[00m\] \[\e[01;34m\]\w\[\e[00m\] ] \[\e[33m\]$(__git_branch)\[\e[00m\]\n$ '
     fi
 else
   if [ "$EUID" -eq 0 ]; then
-    PS1='[\u@\h \w]$(__git_branch) $(__prompt_status)\n# '
+    PS1='[\u@\h \w]$(__git_branch) # '
   else
-    PS1='[\u@\h \w]$(__git_branch) $(__prompt_status)\n$ '
+    PS1='[\u@\h \w]$(__git_branch) $ '
   fi
 fi
 
