@@ -7,6 +7,9 @@
 :set softtabstop=4
 :set autoindent
 :set smartcase
+:set noswapfile
+:set nobackup
+:set nowritebackup
 
 syntax on
 colorscheme desert
