@@ -23,7 +23,7 @@ if [ -x /usr/bin/dircolors ]; then
   test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
 fi
 alias ls='ls --color=auto'
-alias ll='ls -la'
+alias ll='ls -lh'
 alias lla='ls -lah'
 alias grep='grep --color=auto'
 alias ip='ip --color=auto'
@@ -53,10 +53,10 @@ case "$TERM" in xterm-color|*-256color) color_prompt=yes ;; esac
 if [ "$color_prompt" = yes ] && tput setaf 1 >/dev/null 2>&1; then
     if [ "$EUID" -eq 0 ]; then
         # Root → username in red, # prompt
-        PS1='[\[\e[01;35m\]\t\[\e[00m\]][ ${debian_chroot:+($debian_chroot)}\[\e[01;31m\]\u#\[\e[00m\]\[\e[01;90m\]\h\[\e[00m\] \[\e[01;34m\]\w\[\e[00m\] ] \[\e[33m\]$(__git_branch)\[\e[00m\]\n# '
+        PS1='[\[\e[01;35m\]\t\[\e[00m\]][ ${debian_chroot:+($debian_chroot)}\[\e[01;31m\]\u#\[\e[00m\]\[\e[01;37m\]\h\[\e[00m\] \[\e[01;34m\]\w\[\e[00m\] ] \[\e[33m\]$(__git_branch)\[\e[00m\]\n# '
     else
         # Normal user → username in green, $ prompt
-        PS1='[\[\e[01;35m\]\t\[\e[00m\]][ ${debian_chroot:+($debian_chroot)}\[\e[01;32m\]\u#\[\e[00m\]\[\e[01;90m\]\h\[\e[00m\] \[\e[01;34m\]\w\[\e[00m\] ] \[\e[33m\]$(__git_branch)\[\e[00m\]\n$ '
+        PS1='[\[\e[01;35m\]\t\[\e[00m\]][ ${debian_chroot:+($debian_chroot)}\[\e[01;32m\]\u#\[\e[00m\]\[\e[01;37m\]\h\[\e[00m\] \[\e[01;34m\]\w\[\e[00m\] ] \[\e[33m\]$(__git_branch)\[\e[00m\]\n$ '
     fi
 else
   if [ "$EUID" -eq 0 ]; then
